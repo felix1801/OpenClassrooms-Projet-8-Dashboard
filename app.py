@@ -3,11 +3,11 @@
 import streamlit as st
 
 # Load secrets API_URL (heroku.myAPI) and API_KEY (azertyuiop123...)
-api_url = st.secrets["API_URL"]
-api_key = st.secrets["API_KEY"]
+# api_url = st.secrets["API_URL"]
+# api_key = st.secrets["API_KEY"]
 
 from data_loader import load_data
-from model import predict_score
+# from model import predict_score
 from visualization import (
     plot_client_info,
     plot_score_probability,
@@ -23,9 +23,9 @@ def main():
     data = load_data()
     
     st.sidebar.title("Sélection du client")
-    client_id = st.sidebar.selectbox("ID du client", data['client_id'])
+    client_id = st.sidebar.selectbox("ID du client", data['SK_ID_CURR'])
     
-    client_data = data[data['client_id'] == client_id].iloc[0]
+    client_data = data[data['SK_ID_CURR'] == client_id].iloc[0]
     
     st.title(f"Dashboard du client {client_id}")
     
@@ -34,7 +34,8 @@ def main():
         plot_client_info(client_data)
     
     with col2:
-        score, probability = predict_score(client_data)
+        # score, probability = predict_score(client_data)
+        score, probability = 1, 0.8
         plot_score_probability(score, probability)
     
     st.subheader("Comparaison avec l'ensemble des clients")
@@ -53,12 +54,12 @@ def main():
         st.write(f"Nouveau score: {'Accepté' if new_score == 1 else 'Refusé'}")
         st.write(f"Nouvelle probabilité: {new_probability:.2f}")
     
-    st.subheader("Ajouter un nouveau client")
-    new_client_data = create_new_client()
-    if st.button("Calculer le score pour le nouveau client"):
-        new_client_score, new_client_probability = predict_score(new_client_data)
-        st.write(f"Score du nouveau client: {'Accepté' if new_client_score == 1 else 'Refusé'}")
-        st.write(f"Probabilité du nouveau client: {new_client_probability:.2f}")
+    # st.subheader("Ajouter un nouveau client")
+    # new_client_data = create_new_client()
+    # if st.button("Calculer le score pour le nouveau client"):
+    #     new_client_score, new_client_probability = predict_score(new_client_data)
+    #     st.write(f"Score du nouveau client: {'Accepté' if new_client_score == 1 else 'Refusé'}")
+    #     st.write(f"Probabilité du nouveau client: {new_client_probability:.2f}")
     
     st.markdown(config.ACCESSIBILITY_FOOTER, unsafe_allow_html=True)
 

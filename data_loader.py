@@ -7,7 +7,7 @@ import streamlit as st
 def load_data():
     # Simulons des données pour l'exemple
     data = pd.DataFrame({
-        'client_id': np.random.randint(100000, 999999, 1000),
+        'SK_ID_CURR': np.random.randint(100000, 999999, 1000),
         'PAYMENT_RATE': np.random.uniform(0, 1, 1000),
         'EXT_SOURCE_3': np.random.uniform(0, 1, 1000), 
         'EXT_SOURCE_2': np.random.uniform(0, 1, 1000),
