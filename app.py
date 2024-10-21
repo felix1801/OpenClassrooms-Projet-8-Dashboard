@@ -7,7 +7,7 @@ import streamlit as st
 # api_key = st.secrets["API_KEY"]
 
 from data_loader import load_data
-# from model import predict_score
+from model import predict_score
 from visualization import (
     plot_client_info,
     plot_score_probability,
@@ -18,6 +18,7 @@ from utils import update_client_data, create_new_client
 import config
 
 import os
+import numpy as np
 
 def main():
     st.set_page_config(page_title="Dashboard de Scoring Crédit", layout="wide")
@@ -38,9 +39,8 @@ def main():
         plot_client_info(client_data)
     
     with col2:
-        # score = predict_score(client_data)
-        score = 1
-        plot_score_probability(score, probability)
+        score = predict_score([client_data.to_dict()])
+        plot_score_probability(score)
     
     st.subheader("Comparaison avec l'ensemble des clients")
     feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
