@@ -9,7 +9,7 @@ def predict_score(client_data):
     response = requests.post(f"{API_URL}/predict", json=client_data)
     if response.status_code == 200:
         data = response.json()
-        return data['score'], data['probability']
+        return data['score']
     else:
         st.error("Erreur lors de l'appel à l'API")
         return None, None

@@ -17,25 +17,29 @@ from visualization import (
 from utils import update_client_data, create_new_client
 import config
 
+import os
+
 def main():
     st.set_page_config(page_title="Dashboard de Scoring Crédit", layout="wide")
+
+    data_path = os.path.abspath(os.path.join(os.getcwd(), '..', '..', 'OpenClassrooms-Projet-7', 'modeling', 'data', '04_feature', 'test_dataset_features.csv'))
     
-    data = load_data()
+    data = load_data(data_path)
     
     st.sidebar.title("Sélection du client")
-    client_id = st.sidebar.selectbox("ID du client", data['SK_ID_CURR'])
+    client_id = st.sidebar.selectbox("ID du client", range(len(data)))
     
-    client_data = data[data['SK_ID_CURR'] == client_id].iloc[0]
+    client_data = data.iloc[client_id]
     
-    st.title(f"Dashboard du client {client_id}")
+    st.title(f"Fiche du client n°{client_id}")
     
     col1, col2 = st.columns(2)
     with col1:
         plot_client_info(client_data)
     
     with col2:
-        # score, probability = predict_score(client_data)
-        score, probability = 1, 0.8
+        # score = predict_score(client_data)
+        score = 1
         plot_score_probability(score, probability)
     
     st.subheader("Comparaison avec l'ensemble des clients")
