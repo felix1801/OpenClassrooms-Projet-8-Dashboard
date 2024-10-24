@@ -8,9 +8,10 @@ def plot_client_info(client_data):
         if feature != 'client_id':
             st.write(f"{feature.capitalize()}: {value}")
 
-def plot_score_probability(score):
-    st.subheader("Score")
-    st.metric("Score", "Accepté" if score == 0 else "Refusé")
+def plot_score_probability(score, probability):
+    st.subheader("Score et probabilité")
+    st.metric("Accord du prêt", "Accepté" if score == 0 else "Refusé")
+    st.metric("Probabilité", probability)
 
 def plot_feature_comparison(data, client_data, feature):
     fig = px.histogram(data, x=feature, nbins=30)

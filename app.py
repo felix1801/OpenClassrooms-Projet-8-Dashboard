@@ -39,24 +39,26 @@ def main():
         plot_client_info(client_data)
     
     with col2:
-        score = predict_score([client_data.to_dict()])
-        plot_score_probability(score)
+        result = predict_score([client_data.to_dict()])
+        score = result['scores']
+        probability = result['probas'][0]
+        plot_score_probability(score, probability)
     
-    st.subheader("Comparaison avec l'ensemble des clients")
-    feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
-    plot_feature_comparison(data, client_data, feature_to_compare)
+    # st.subheader("Comparaison avec l'ensemble des clients")
+    # feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
+    # plot_feature_comparison(data, client_data, feature_to_compare)
     
-    st.subheader("Analyse bivariée")
-    x_axis = st.selectbox("Choisissez la caractéristique pour l'axe X", config.FEATURES)
-    y_axis = st.selectbox("Choisissez la caractéristique pour l'axe Y", config.FEATURES)
-    plot_bivariate_analysis(data, client_data, x_axis, y_axis)
+    # st.subheader("Analyse bivariée")
+    # x_axis = st.selectbox("Choisissez la caractéristique pour l'axe X", config.FEATURES)
+    # y_axis = st.selectbox("Choisissez la caractéristique pour l'axe Y", config.FEATURES)
+    # plot_bivariate_analysis(data, client_data, x_axis, y_axis)
     
-    st.subheader("Modifier les informations du client")
-    updated_data = update_client_data(client_data)
-    if st.button("Mettre à jour et recalculer le score"):
-        new_score, new_probability = predict_score(updated_data)
-        st.write(f"Nouveau score: {'Accepté' if new_score == 1 else 'Refusé'}")
-        st.write(f"Nouvelle probabilité: {new_probability:.2f}")
+    # st.subheader("Modifier les informations du client")
+    # updated_data = update_client_data(client_data)
+    # if st.button("Mettre à jour et recalculer le score"):
+    #     new_score, new_probability = predict_score(updated_data)
+    #     st.write(f"Nouveau score: {'Accepté' if new_score == 1 else 'Refusé'}")
+    #     st.write(f"Nouvelle probabilité: {new_probability:.2f}")
     
     # st.subheader("Ajouter un nouveau client")
     # new_client_data = create_new_client()
