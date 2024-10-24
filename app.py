@@ -48,10 +48,10 @@ def main():
     feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
     plot_feature_comparison(data, client_data, feature_to_compare)
     
-    # st.subheader("Analyse bivariée")
-    # x_axis = st.selectbox("Choisissez la caractéristique pour l'axe X", config.FEATURES)
-    # y_axis = st.selectbox("Choisissez la caractéristique pour l'axe Y", config.FEATURES)
-    # plot_bivariate_analysis(data, client_data, x_axis, y_axis)
+    st.subheader("Analyse bivariée")
+    x_axis = st.selectbox("Choisissez la caractéristique pour l'axe X", config.FEATURES)
+    y_axis = st.selectbox("Choisissez la caractéristique pour l'axe Y", config.FEATURES)
+    plot_bivariate_analysis(data, client_data, x_axis, y_axis)
     
     # st.subheader("Modifier les informations du client")
     # updated_data = update_client_data(client_data)
