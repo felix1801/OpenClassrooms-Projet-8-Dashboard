@@ -44,9 +44,9 @@ def main():
         probability = result['probas'][0]
         plot_score_probability(score, probability)
     
-    # st.subheader("Comparaison avec l'ensemble des clients")
-    # feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
-    # plot_feature_comparison(data, client_data, feature_to_compare)
+    st.subheader("Comparaison avec l'ensemble des clients")
+    feature_to_compare = st.selectbox("Choisissez une caractéristique à comparer", config.FEATURES)
+    plot_feature_comparison(data, client_data, feature_to_compare)
     
     # st.subheader("Analyse bivariée")
     # x_axis = st.selectbox("Choisissez la caractéristique pour l'axe X", config.FEATURES)
