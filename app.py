@@ -19,6 +19,7 @@ import config
 
 import os
 import numpy as np
+import pandas as pd
 
 def main():
     st.set_page_config(page_title="Dashboard de Scoring Crédit", layout="wide")
@@ -39,8 +40,11 @@ def main():
         plot_client_info(client_data)
     
     with col2:
+        for col in config.FEATURES:
+            if pd.isna(client_data[col]):
+                client_data[col] = data[col].mean()
         result = predict_score([client_data.to_dict()])
-        score = result['scores']
+        score = result['scores'][0]
         probability = result['probas'][0]
         plot_score_probability(score, probability)
     
