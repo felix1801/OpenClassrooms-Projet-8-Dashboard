@@ -60,21 +60,27 @@ def main():
     st.subheader("Modifier les informations du client")
     updated_data = update_client_data(client_data)
     if st.button("Mettre à jour et recalculer le score"):
-        data_list = [updated_data.to_dict()]
-        new_result = predict_score(data_list)
+        update_client_data_list = [updated_data.to_dict()]
         
-        score = new_result['scores'][0]
-        probability = new_result['probas'][0]        
+        new_result = predict_score(update_client_data_list)
+        new_score = new_result['scores'][0]
+        new_probability = new_result['probas'][0]        
+
         st.subheader("Nouvelle prédiction:")
-        plot_score_probability(score, probability)
+        plot_score_probability(new_score, new_probability)
 
     
-    # st.subheader("Ajouter un nouveau client")
-    # new_client_data = create_new_client()
-    # if st.button("Calculer le score pour le nouveau client"):
-    #     new_client_score, new_client_probability = predict_score(new_client_data)
-    #     st.write(f"Score du nouveau client: {'Accepté' if new_client_score == 1 else 'Refusé'}")
-    #     st.write(f"Probabilité du nouveau client: {new_client_probability:.2f}")
+    st.subheader("Ajouter un nouveau client")
+    new_client_data = create_new_client()
+    if st.button("Calculer le score pour le nouveau client"):
+        new_client_data_list = [new_client_data.to_dict()]
+        
+        new_client_result = predict_score(new_client_data_list)
+        new_client_score = new_client_result['scores'][0]
+        new_client_probability = new_client_result['probas'][0]        
+
+        st.subheader("Prédiction du nouveau client :")
+        plot_score_probability(new_client_score, new_client_probability)
     
     st.markdown(config.ACCESSIBILITY_FOOTER, unsafe_allow_html=True)
 
