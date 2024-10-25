@@ -5,10 +5,7 @@ import config
 def update_client_data(client_data):
     updated_data = client_data.copy()
     for feature in config.FEATURES:
-        if feature == 'debt_ratio':
-            updated_data[feature] = st.number_input(f"Nouveau {feature}", min_value=0.0, max_value=1.0, value=client_data[feature])
-        else:
-            updated_data[feature] = st.number_input(f"Nouveau {feature}", min_value=0, max_value=1000000, value=client_data[feature])
+        updated_data[feature] = st.number_input(f"Nouveau {feature}", min_value=float(-1000000), max_value=float(1000000), value=client_data[feature])
     return updated_data
 
 def create_new_client():

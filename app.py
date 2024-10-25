@@ -57,12 +57,17 @@ def main():
     y_axis = st.selectbox("Choisissez la caractéristique pour l'axe Y", config.FEATURES)
     plot_bivariate_analysis(data, client_data, x_axis, y_axis)
     
-    # st.subheader("Modifier les informations du client")
-    # updated_data = update_client_data(client_data)
-    # if st.button("Mettre à jour et recalculer le score"):
-    #     new_score, new_probability = predict_score(updated_data)
-    #     st.write(f"Nouveau score: {'Accepté' if new_score == 1 else 'Refusé'}")
-    #     st.write(f"Nouvelle probabilité: {new_probability:.2f}")
+    st.subheader("Modifier les informations du client")
+    updated_data = update_client_data(client_data)
+    if st.button("Mettre à jour et recalculer le score"):
+        data_list = [updated_data.to_dict()]
+        new_result = predict_score(data_list)
+        
+        score = new_result['scores'][0]
+        probability = new_result['probas'][0]        
+        st.subheader("Nouvelle prédiction:")
+        plot_score_probability(score, probability)
+
     
     # st.subheader("Ajouter un nouveau client")
     # new_client_data = create_new_client()
