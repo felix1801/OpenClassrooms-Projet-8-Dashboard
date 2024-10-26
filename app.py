@@ -1,10 +1,4 @@
-# streamlit allows to create a web application with python.
-# app.py is the main page of the web application.
 import streamlit as st
-
-# Load secrets API_URL (heroku.myAPI) and API_KEY (azertyuiop123...)
-# api_url = st.secrets["API_URL"]
-# api_key = st.secrets["API_KEY"]
 
 from data_loader import load_data
 from model import predict_score
@@ -86,3 +80,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# TO DO :
+# - [ ] Ajouter l'affichage du seuil sélectionné pour la prédiction
+# - [ ] Design :
+#   - [ ] Visualisation du score de crédit (jauge colorée)
+#   - [ ] Contribution des features qui ont amené le modèle à prédire le score (feature importance locale et sa comparaison avec la feature importance globale) 
+#   
