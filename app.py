@@ -82,8 +82,9 @@ if __name__ == "__main__":
     main()
 
 # TO DO :
-# - [ ] Ajouter l'affichage du seuil sélectionné pour la prédiction
+# - [ ] Pour nouveau client, mettre les valeurs moyenne par défaut
 # - [ ] Design :
-#   - [ ] Visualisation du score de crédit (jauge colorée)
+#   - [ ] Visualisation du score de crédit (jauge colorée) - seuil fait le changement de couleur
 #   - [ ] Contribution des features qui ont amené le modèle à prédire le score (feature importance locale et sa comparaison avec la feature importance globale) 
+# - [ ] Joli design
 #   
