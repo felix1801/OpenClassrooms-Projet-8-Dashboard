@@ -24,7 +24,7 @@ import config
 st.set_page_config(page_title="Dashboard de Scoring Crédit", layout="wide")
 
 data_path = os.path.join(os.getcwd(), 'data', 'test_features.csv')
-
+print(data_path)
 data = load_data(data_path)
 
 st.sidebar.title("Sélection du client")
