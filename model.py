@@ -2,7 +2,6 @@ import requests
 import streamlit as st
 
 # Load secrets API_URL (heroku.myAPI)
-# API_URL = st.secrets["API_URL"] # Remote API and remote dashboard run
 # API_URL = "http://127.0.0.1:5000" # Local API and local dashboard run
 API_URL = "https://openclassrooms-projet-7-api-d1ec900c726b.herokuapp.com/" # Remote API but local dashboard run
 

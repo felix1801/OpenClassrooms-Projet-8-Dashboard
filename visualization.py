@@ -8,10 +8,65 @@ def plot_client_info(client_data):
         if feature != 'client_id':
             st.write(f"{feature.capitalize()}: {value}")
 
-def plot_score_probability(score, probability):
-    st.subheader("Score et probabilité")
-    st.metric("Accord du prêt", "Accepté" if score == 0 else "Refusé")
-    st.metric("Probabilité", probability)
+
+def plot_score_probability(score, probability, threshold):
+    st.subheader("Aide à la décision et probabilité de défaut de paiement")
+    
+    # Affichage de la décision de prêt
+    st.metric("Prêt", "Accepté" if score == 0 else "Refusé")
+    
+    # Calcul de la largeur de la barre de progression et du seuil
+    progress_width = int(probability * 100)
+    threshold_width = int(threshold * 100)
+    
+    # Choix de la couleur en fonction du seuil
+    if probability <= threshold:
+        progress_color = "green"
+    else:
+        progress_color = "red"
+    
+    # Barre de progression personnalisée
+    st.markdown(f"""
+    <div style="width:100%; background-color:#e0e0e0; border-radius:10px;position:relative;height:30px;">
+        <!-- Barre de progression -->
+        <div style="width:{progress_width}%; 
+                    background-color:{progress_color}; 
+                    height:30px; 
+                    border-radius:10px; 
+                    position:absolute; 
+                    top:0; 
+                    left:0;">
+        </div>
+        <!-- Marqueur de seuil -->
+        <div style="width:4px; 
+                    background-color:black; 
+                    height:40px; 
+                    position:absolute; 
+                    top:-5px; 
+                    left:{threshold_width}%; 
+                    z-index:10;">
+        </div>
+        <!-- Texte de progression -->
+        <div style="width:100%; 
+                    height:30px; 
+                    position:absolute; 
+                    top:0; 
+                    left:0; 
+                    display:flex; 
+                    justify-content:center; 
+                    align-items:center; 
+                    color:white; 
+                    font-weight:bold;">
+            {probability:.2%}
+        </div>
+        
+        
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Affichage textuel de la probabilité et du seuil
+    st.write("Probabilité de défaut de paiement")
+    st.write(f"Seuil : {threshold:.0%}")
 
 def plot_feature_comparison(data, client_data, feature):
     fig = px.histogram(data, x=feature, nbins=30)
