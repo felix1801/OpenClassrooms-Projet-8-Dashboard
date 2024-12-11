@@ -23,7 +23,7 @@ import config
 
 st.set_page_config(page_title="Dashboard de Scoring Crédit", layout="wide")
 
-data_path = os.path.abspath(os.path.join(os.getcwd(), '..', '..', 'OpenClassrooms-Projet-7', 'modeling', 'data', '04_feature', 'test_features.csv'))
+data_path = os.path.abspath(os.path.join(os.getcwd(), 'data', 'test_features.csv'))
 
 data = load_data(data_path)
 
