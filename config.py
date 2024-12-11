@@ -22,6 +22,7 @@ ACCESSIBILITY_FOOTER = """
         background-color: #f1f1f1;
         color: black;
         text-align: center;
+        z-index: 10000000;
     }
     </style>
     <div class="footer">
